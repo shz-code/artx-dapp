@@ -35,7 +35,10 @@ const AccountDetails = ({ instance }) => {
             </span>
           </div>
           <p className="py-1">
-            Wallet Address: <span className="text-zinc-400">{account}</span>
+            Wallet Address:{" "}
+            <span className="text-zinc-400">
+              {account ? account : "0x00...."}
+            </span>
           </p>
           <p>
             Balance:{" "}
