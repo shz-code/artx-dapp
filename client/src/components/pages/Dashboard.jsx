@@ -24,7 +24,7 @@ const Dashboard = () => {
           </div>
         </div>
       ) : (
-        <div className="bg-orange-600 rounded-md">
+        <div className="bg-gradient-to-r from-orange-800 to-orange-400 rounded-md">
           <span className="font-bold px-2 text-2xl">
             {" "}
             Connect MetaMask to explore

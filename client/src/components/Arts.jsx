@@ -12,7 +12,7 @@ const Arts = () => {
       <h1 className="text-3xl font-bold font-mono pb-2 mb-2 bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-md px-2 py-2">
         Your Artworks
       </h1>
-      <div className="flex flex-wrap gap-5 bg-zinc-900/75 rounded-md p-4">
+      <div className="flex flex-wrap justify-center gap-5 bg-zinc-900/75 rounded-md p-4">
         {arts.map((art) => (
           <Art art={art} key={art} />
         ))}
