@@ -10,14 +10,14 @@ const App = () => {
   // console.log(instance);
 
   return (
-    <Layout>
-      <Router>
+    <Router>
+      <Layout>
         <Routes>
           <Route path="/" element="" />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
-      </Router>
-    </Layout>
+      </Layout>
+    </Router>
   );
 };
 

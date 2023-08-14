@@ -5,6 +5,8 @@ const EtherContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const EtherContextProvider = ({ children }) => {
+  const { ethereum } = window;
+
   const [instance, setInstance] = useState({
     account: "",
     contract: "",
@@ -12,9 +14,13 @@ export const EtherContextProvider = ({ children }) => {
     balance: null,
   });
 
+  // Listen for metamask events
+  // accountsChanged =>
+  // chainChanged =>
   const eventListen = (provider, account) => {
-    console.log("Checking");
+    // Listen for accountsChanged MetaMask event
     window.ethereum.on("accountsChanged", async () => {
+      // Check if user disconnected the wallet or changed account
       if (window.ethereum.selectedAddress) {
         provider = new ethers.BrowserProvider(window.ethereum);
         let newSigner = await provider.getSigner();
@@ -22,7 +28,7 @@ export const EtherContextProvider = ({ children }) => {
         const balance = await provider.getBalance(account);
         setInstance({
           provider: provider,
-          balance: Number(balance),
+          balance: balance,
           account: account,
         });
       } else {
@@ -36,8 +42,8 @@ export const EtherContextProvider = ({ children }) => {
       }
     });
 
+    // Check if user changed network
     window.ethereum.on("chainChanged", async () => {
-      console.log(2);
       let newProvider = new ethers.BrowserProvider(window.ethereum);
       const balance = await newProvider.getBalance(account);
       setInstance({
@@ -48,7 +54,19 @@ export const EtherContextProvider = ({ children }) => {
     });
   };
 
+  // Disconnect frontend with MetaMask
+  const disconnect = () => {
+    localStorage.clear();
+    setInstance({
+      account: "",
+      contract: "",
+      provider: null,
+      balance: null,
+    });
+  };
+
   useEffect(() => {
+    // Check if user already gave permission to access MetaMask
     const init = async () => {
       if (localStorage.getItem("account")) {
         const provider = new ethers.BrowserProvider(window.ethereum);
@@ -60,6 +78,7 @@ export const EtherContextProvider = ({ children }) => {
           account: account,
           balance: Number(balance),
         });
+        // Listen for events
         eventListen(provider, account);
       }
     };
@@ -67,7 +86,7 @@ export const EtherContextProvider = ({ children }) => {
   }, []);
 
   const setContract = async () => {
-    if (window.ethereum !== undefined) {
+    if (ethereum !== undefined) {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
       const account = await signer.getAddress();
@@ -92,6 +111,7 @@ export const EtherContextProvider = ({ children }) => {
       value={{
         instance,
         setContract,
+        disconnect,
       }}
     >
       {children}

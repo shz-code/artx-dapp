@@ -5,3 +5,16 @@
 body {
     @apply bg-zinc-950 text-slate-100;
 }
+
+.img-container {
+    max-width: 250px;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+    max-height: 300px;
+    height: 100%;
+    object-fit: contain;
+    @apply rounded-md
+}

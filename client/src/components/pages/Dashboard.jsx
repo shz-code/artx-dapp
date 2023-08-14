@@ -1,12 +1,24 @@
+import { useEtherContext } from "../../contexts/etherContext";
+import AccountDetails from "../AccountDetails";
+import Arts from "../Arts";
+import OtherUsers from "../OtherUsers";
+
 const Dashboard = () => {
+  const { instance } = useEtherContext();
   return (
     <>
-      <div className="flex justify-between">
-        <div className="bg-red-400 flex-1">
-          <div className="py-4">account details</div>
-          <div className="bg-green-400">pictures</div>
+      <div className="lg:flex justify-between">
+        <div className="flex-1">
+          <div className="py-4">
+            <AccountDetails instance={instance} />
+          </div>
+          <div className="">
+            <Arts />
+          </div>
         </div>
-        <div className="md:block bg-sky-400">other users</div>
+        <div className="py-4">
+          <OtherUsers />
+        </div>
       </div>
     </>
   );

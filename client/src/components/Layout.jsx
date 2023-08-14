@@ -1,11 +1,13 @@
+import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 // eslint-disable-next-line react/prop-types
 const Layout = ({ children }) => {
   return (
-    <div className="container mx-auto px-1">
+    <div>
       <Navbar />
-      {children}
+      <div className="container mx-auto px-1">{children}</div>
+      <Footer />
     </div>
   );
 };
