@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
+import "./assets/css/styles.css";
 import { EtherContextProvider } from "./contexts/etherContext.jsx";
 import { MethodsContextProvider } from "./contexts/methodsContext.jsx";
 
