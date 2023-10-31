@@ -174,7 +174,7 @@ contract ARTX {
 
     /**
      *   @dev Functions/transferArt -> transfers the Art to new owner
-     *   @param _artId(art id), _addr(new owner address), _userId(new owner id)
+     *   @param _artId(art id),@param _addr(new owner address),@param _userId(new owner id)
      */
     function transferArt(
         uint256 _artId,
